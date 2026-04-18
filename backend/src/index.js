@@ -8,8 +8,12 @@ import redisClient from "./config/redis.js";
 import connectDB from "./config/db.js";
 import cartRouter from "./routes/cartroute.js";
 import orderRouter from "./routes/orderroute.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config({ path: './src/.env' });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.join(__dirname, '.env') });
 console.log("DB_KEY:", process.env.DB_KEY);
 const serverr = express();
 
