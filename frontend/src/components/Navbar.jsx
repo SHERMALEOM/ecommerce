@@ -53,6 +53,7 @@ function Navbar() {
           
           {isAuthenticated ? (
             <div className="nav-user-menu">
+              {user?.role === 'admin' && <Link to="/admin" className="nav-link" style={{marginRight: '1rem', fontWeight: 'bold', color: '#ffb86c'}}>Admin</Link>}
               <span className="nav-username">Hi, {user?.firstname || user?.email?.split('@')[0]}</span>
               <button onClick={handleLogout} className="glass-btn-small outline">Logout</button>
             </div>

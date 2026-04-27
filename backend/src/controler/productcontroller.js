@@ -35,10 +35,16 @@ export const getSingleProduct = async (req, res) => {
 // DELETE PRODUCT (Admin)
 export const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Product deleted" });
+    console.log("Delete product called with ID:", req.params.id);
+    const result = await Product.findByIdAndDelete(req.params.id.trim());
+    console.log("Delete result:", result);
+    if (!result) {
+      return res.status(404).json({ success: false, message: "Product not found in DB" });
+    }
+    res.status(200).json({ success: true, message: "Product deleted" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Delete error:", error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

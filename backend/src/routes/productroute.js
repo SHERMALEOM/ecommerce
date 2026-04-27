@@ -5,7 +5,7 @@ import authMiddleware from "../middleware/authmiddleware.js";
 const productRouter = express.Router();
 
 productRouter.post("/",authMiddleware, isAdmin,createProduct);        // admin
-productRouter.delete("/:id",isAdmin, deleteProduct);   // admin
+productRouter.delete("/:id", authMiddleware, isAdmin, deleteProduct);   // admin
 productRouter.get("/", getProducts);           // user
 productRouter.get("/:id", getSingleProduct);   // user
 productRouter.put("/:id", authMiddleware, isAdmin, updateProduct);
